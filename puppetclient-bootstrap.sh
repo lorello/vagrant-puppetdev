@@ -2,6 +2,8 @@
 
 MASTERNAME=puppetmaster.vagrant.local
 OPTIONS="--user root --no-daemonize --onetime --detailed-exitcodes --logdest /var/log/puppet/agent.log --verbose"
+VERSION=2.7.18-1puppetlabs1
+
 
 DISTRO=$(lsb_release -c -s)
 
@@ -17,8 +19,8 @@ else
      dpkg -i puppetlabs-release-$DISTRO.deb
 fi
 
-if $(dpkg --status puppet | egrep -q "^Version: 2.7"); then
-    echo "puppet 2.x already installed."
+if $(dpkg --status puppet | egrep -q "^Version: $VERSION"); then
+    echo "puppet $VERSION already installed."
 else
     echo "Installing puppet agent..."
 
@@ -30,7 +32,7 @@ else
     fi
     aptitude -q -y update
     export DEBIAN_FRONTEND=noninteractive
-    apt-get install --yes --force-yes puppet=2.7.18-1puppetlabs1
+    apt-get install --yes --force-yes puppet-common=$VERSION puppet=$VERSION
 fi
 
 if $(grep -q puppetmaster.vagrant.local /etc/hosts); then
