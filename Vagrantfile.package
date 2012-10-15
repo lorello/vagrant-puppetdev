@@ -1,0 +1,46 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant::Config.run do |config|
+    config.vm.define :puppetmaster do |master_config|
+        master_config.vm.box = "puppetmaster"
+        master_config.vm.box_url = "http://vagrantboxes.tools.softecspa.it/puppetmaster.box"
+        master_config.vm.network :hostonly, "10.20.30.2"
+        master_config.vm.host_name = "puppetmaster.vagrant.local"
+        master_config.vm.customize ["modifyvm", :id, "--memory", 512]
+    end
+
+    config.vm.define :puppethardy do |hardy_config|
+        hardy_config.vm.box = "puppethardy"
+        master_config.vm.box_url = "http://vagrantboxes.tools.softecspa.it/puppethardy.box"
+        hardy_config.vm.network :hostonly, "10.20.30.10"
+        hardy_config.vm.host_name = "puppethardy.vagrant.local"
+        hardy_config.vm.provision :puppet_server do |puppet|
+            puppet.puppet_server = "puppetmaster.vagrant.local"
+            puppet.options = [ "--no-daemonize", "--onetime", "--detailed-exitcodes", "--logdest", "/var/log/puppet/agent.log", "--verbose" ]
+        end
+    end
+
+    config.vm.define :puppetlucid do |lucid_config|
+        lucid_config.vm.box = "puppetlucid"
+         master_config.vm.box_url = "http://vagrantboxes.tools.softecspa.it/puppetlucid.box"
+        lucid_config.vm.network :hostonly, "10.20.30.11"
+        lucid_config.vm.host_name = "puppetlucid.vagrant.local"
+        lucid_config.vm.provision :puppet_server do |puppet|
+            puppet.puppet_server = "puppetmaster.vagrant.local"
+            puppet.options = [ "--no-daemonize", "--onetime", "--detailed-exitcodes", "--logdest", "/var/log/puppet/agent.log", "--verbose" ]
+        end
+    end
+
+    config.vm.define :puppetprecise do |precise_config|
+        precise_config.vm.box = "puppetprecise"
+        master_config.vm.box_url = "http://vagrantboxes.tools.softecspa.it/puppetprecise.box"
+        precise_config.vm.network :hostonly, "10.20.30.12"
+        precise_config.vm.host_name = "puppetprecise.vagrant.local"
+        precise_config.vm.provision :puppet_server do |puppet|
+            puppet.puppet_server = "puppetmaster.vagrant.local"
+            puppet.options = [ "--no-daemonize", "--onetime", "--detailed-exitcodes", "--logdest", "/var/log/puppet/agent.log", "--verbose" ]
+        end
+    end
+
+end
