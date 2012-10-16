@@ -6,5 +6,9 @@ Vagrant development environment for Puppet master/client on Ubuntu.
 The master is on a precise 32 bit and the three agents are hardy, 
 lucid and precise, all on 32 bit architecture.
 
+TODO: simple puppet code in separated repository to start playing
+with puppet recipes.
+
+
 
 
