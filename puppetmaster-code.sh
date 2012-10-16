@@ -5,7 +5,7 @@ if [ ! -f ./puppetmaster-code-repository.conf ]; then
     exit 0
 fi
 
-./puppetmaster-code-repository.conf
+. ./puppetmaster-code-repository.conf
 
 function ensure_package()
 {
@@ -22,13 +22,19 @@ case $VCS in
         ensure_package subversion
         [ -n $SVNUSER ] && SVNOPTIONS="$SVNOPTIONS --username $SVNUSER"
         [ -n $SVNPASS ] && SVNOPTIONS="$SVNOPTIONS --password $SVNPASS"
-        svn co $SVNOPTIONS $REPO_MODULES $PATH_MODULES
-        svn co $SVNOPTIONS $REPO_MANIFESTS $PATH_MANIFESTS
+        [ -n $REPO_MODULES ] && [ -n $PATH_MODULES ] && svn co $SVNOPTIONS $REPO_MODULES $PATH_MODULES
+        [ -n $REPO_MANIFESTS ] && [ -n $PATH_MANIFESTS ] && svn co $SVNOPTIONS $REPO_MANIFESTS $PATH_MANIFESTS
         ;;
     GIT)
         ensure_package git-core
-        git clone $REPO_MODULES $PATH_MODULES
-        git clone $REPO_MANIFESTS $PATH_MANIFESTS
+        if [[ -n $REPO_MODULES && -n $PATH_MODULES ]]; then
+		[ -d $PATH_MODULES ] && mv $PATH_MODULES $PATH_MODULES.original
+		git clone $REPO_MODULES $PATH_MODULES
+	fi
+        if [[ -n $REPO_MANIFESTS && -n $PATH_MANIFESTS ]]; then
+		[ -d $PATH_MANIFESTS ] && mv $PATH_MANIFESTS $PATH_MANIFESTS.original
+		git clone $REPO_MANIFESTS $PATH_MANIFESTS
+	fi
         ;;
 esac
 
