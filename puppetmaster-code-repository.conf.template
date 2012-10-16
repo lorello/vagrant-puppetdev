@@ -1,0 +1,22 @@
+# Create a copy of this file to configure your puppet code
+# repository location
+
+# VCS=[SVN|GIT]
+VCS=SVN
+
+# SVN Options
+SVNUSER=your_svn_user
+SVNPASS=*************
+SVNOPTIONS="--quiet --no-auth-cache"
+
+
+# GIT Options
+# none, use common variables ;-)
+
+
+# Common options
+REPO_MODULES=https://svn.yoursvnserver.com/puppet/trunk/modules
+PATH_MODULES=/etc/puppet/modules
+REPO_MANIFESTS=https://svn.yoursvnserver.com/puppet/trunk/manifests
+PATH_MANIFESTS=/etc/puppet/manifests
+
