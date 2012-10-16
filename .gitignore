@@ -1,1 +1,3 @@
 .vagrant
+*.box
+puppetmaster-code-repository.conf
