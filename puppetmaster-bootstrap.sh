@@ -43,5 +43,5 @@ done
 
 [ -x /vagrant/puppetmaster-code.sh ] && /vagrant/puppetmaster-code.sh
 
-service puppetmaster reload
+service puppetmaster restart
 
