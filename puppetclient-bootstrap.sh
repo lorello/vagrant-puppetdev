@@ -35,12 +35,11 @@ else
     apt-get install --yes --force-yes puppet-common=$VERSION puppet=$VERSION
 fi
 
-if $(grep -q puppetmaster.vagrant.local /etc/hosts); then
-    echo "puppetmaster IP already present in /etc/hosts."
+if $(grep -q $MASTERNAME /etc/hosts); then
+    echo "Master IP already present in /etc/hosts."
 else
     echo "Setting puppetmaster IP in /etc/hosts"
-    echo "10.20.30.2    puppetmaster.vagrant.local puppetmaster puppet" >> /etc/hosts
+    echo "10.20.30.2    $MASTERNAME" >> /etc/hosts
 fi
 
-/usr/bin/puppet agent $OPTIONS --server $MASTERNAME 
 
