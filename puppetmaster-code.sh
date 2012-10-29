@@ -1,11 +1,11 @@
 #!/bin/bash
 
-if [ ! -f ./puppetmaster-code-repository.conf ]; then
+if [ ! -f /vagrant/puppetmaster-code-repository.conf ]; then
     echo "if you want to checkout your puppet code customize the ./puppetmaster-code-repository.conf.template"
     exit 0
 fi
 
-./puppetmaster-code-repository.conf
+. /vagrant/puppetmaster-code-repository.conf
 
 function ensure_package()
 {

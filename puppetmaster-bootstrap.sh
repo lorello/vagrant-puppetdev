@@ -41,7 +41,7 @@ for PUPPET_HOST in $PUPPETHOSTS; do
     fi
 done
 
-[ -x ./puppetmaster-code.sh ] && ./puppetmaster-code.sh
+[ -x /vagrant/puppetmaster-code.sh ] && /vagrant/puppetmaster-code.sh
 
 service puppetmaster reload
 
