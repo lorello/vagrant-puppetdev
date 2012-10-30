@@ -40,7 +40,7 @@ and verify that `manifests` and `modules` are under `/etc/puppet` as expected.
 
 6. Create your client instances
 
-    vagrant up puppethardy
+        vagrant up puppethardy
     vagrant up puppetlucid
     vagrant up puppetprecise
 
