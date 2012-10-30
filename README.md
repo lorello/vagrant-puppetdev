@@ -17,10 +17,10 @@ HOWTO START
 2. Install [Vagrant](http://vagrantup.com/v1/docs/getting-started/index.html)
 
 3. Create a vagrant environment
-
+<pre>
         mkdir ~/vagrant/puppetdev
         git clone https://github.com/lorello/vagrant-puppetdev.git ~/vagrant/puppetdev`
-
+</pre>
 4. Create config file to get puppet code from your repository
 
         cd ~/vagrant/puppetdev
