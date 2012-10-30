@@ -10,14 +10,16 @@ HOWTO START
 -----------
 
 1. Install GIT
-sudo aptitude install git
+`sudo aptitude install git`
 
 2. Install [Vagrant](http://vagrantup.com/v1/docs/getting-started/index.html)
 
 3. Clone the vagrantfiles
+
 `git clone https://github.com/lorello/vagrant-puppetdev.git ~/vagrant/puppetdev`
 
 4. Create config file to get puppet code from your repository
+
 `cd ~/vagrant/puppetdev`
 `cp puppetmaster-code-repository.conf.template puppetmaster-code-repository.conf`
 
