@@ -1,7 +1,7 @@
 #!/bin/bash
 
 MASTERNAME=puppetmaster.vagrant.local
-OPTIONS="--user root --no-daemonize --onetime --detailed-exitcodes --logdest /var/log/puppet/agent.log --verbose"
+MASTERIP=10.20.30.2
 VERSION=2.7.18-1puppetlabs1
 TIMEZONE="Europe/Rome"
 DISTRO=$(lsb_release -c -s)
@@ -13,11 +13,11 @@ if [ ! -f puppetlabs-release-$DISTRO.deb ]; then
     wget -q http://apt.puppetlabs.com/puppetlabs-release-$DISTRO.deb
 fi
 
-if $(grep -q $MASTERNAME /etc/hosts); then
+if $(grep -q $MASTERIP /etc/hosts); then
     echo "Master IP already present in /etc/hosts."
 else
     echo "Setting puppetmaster IP in /etc/hosts"
-    echo "10.20.30.2    $MASTERNAME puppet" >> /etc/hosts
+    echo "$MASTERIP     $MASTERNAME puppet" >> /etc/hosts
 fi
 
 if $(dpkg -l | grep -q puppetlabs-release); then
