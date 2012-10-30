@@ -7,6 +7,7 @@ fi
 
 . /vagrant/puppetmaster-code-repository.conf
 
+
 function ensure_package()
 {
     if $(dpkg -l | grep -q $1); then

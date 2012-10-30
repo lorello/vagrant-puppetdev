@@ -11,8 +11,7 @@ Vagrant::Config.run do |config|
         master_config.vm.provision :shell do |shell|
             shell.path = "puppetmaster-bootstrap.sh"
         end
-        # Tried this to download packages onetime, not running
-        # master_config.vm.share_folder 'aptcache', '/var/cache/apt/archives', '/var/cache/apt/archives', :extra => 'uid=0,dmode=775,fmode=664' 
+        master_config.vm.customize ["modifyvm", :id, "--memory", 512]
     end
 
     config.vm.define :puppethardy do |hardy_config|

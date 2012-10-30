@@ -3,20 +3,28 @@
 MASTERNAME=puppetmaster.vagrant.local
 OPTIONS="--user root --no-daemonize --onetime --detailed-exitcodes --logdest /var/log/puppet/agent.log --verbose"
 VERSION=2.7.18-1puppetlabs1
-
-
+TIMEZONE="Europe/Rome"
 DISTRO=$(lsb_release -c -s)
+
+ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
 
 if [ ! -f puppetlabs-release-$DISTRO.deb ]; then
     echo "Downloading PuppetLabs release package"
     wget -q http://apt.puppetlabs.com/puppetlabs-release-$DISTRO.deb
 fi
 
+if $(grep -q $MASTERNAME /etc/hosts); then
+    echo "Master IP already present in /etc/hosts."
+else
+    echo "Setting puppetmaster IP in /etc/hosts"
+    echo "10.20.30.2    $MASTERNAME puppet" >> /etc/hosts
+fi
+
 if $(dpkg -l | grep -q puppetlabs-release); then
     echo "PuppetLabs repositories package already installed."
 else
     echo "Adding PuppetLabs repositories..."
-     dpkg -i puppetlabs-release-$DISTRO.deb
+    dpkg -i puppetlabs-release-$DISTRO.deb
 fi
 
 if $(dpkg --status puppet | egrep -q "^Version: $VERSION"); then
@@ -33,14 +41,8 @@ else
     aptitude -q -y update
     export DEBIAN_FRONTEND=noninteractive
     apt-get install --yes --force-yes puppet-common=$VERSION puppet=$VERSION
+    [ -f /etc/apt/sources.list.d/lucid.list ] && rm -f /etc/apt/sources.list.d/lucid.list
 fi
 
-if $(grep -q puppetmaster.vagrant.local /etc/hosts); then
-    echo "puppetmaster IP already present in /etc/hosts."
-else
-    echo "Setting puppetmaster IP in /etc/hosts"
-    echo "10.20.30.2    puppetmaster.vagrant.local puppetmaster puppet" >> /etc/hosts
-fi
 
-/usr/bin/puppet agent $OPTIONS --server $MASTERNAME 
 
