@@ -10,6 +10,7 @@ HOWTO START
 -----------
 
 1. Install GIT
+
 `sudo aptitude install git`
 
 2. Install [Vagrant](http://vagrantup.com/v1/docs/getting-started/index.html)
