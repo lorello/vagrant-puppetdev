@@ -21,12 +21,15 @@ HOWTO START
 4. Create config file to get puppet code from your repository
 
 `cd ~/vagrant/puppetdev`
+
 `cp puppetmaster-code-repository.conf.template puppetmaster-code-repository.conf`
 
 Edit accordingly to your environment or leave it with suggested default if your just
 start playing with puppet
 
-TODO: simple puppet code in separated repository to start playing
+TODO: 
+
+ * simple puppet code in separated repository to start playing
 with puppet recipes.
 
 
