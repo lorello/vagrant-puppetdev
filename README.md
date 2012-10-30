@@ -30,7 +30,7 @@ start playing with puppet
 
 TODO: 
 
- * simple puppet code in separated repository to start playing
+ - simple puppet code in separated repository to start playing
 with puppet recipes.
 
 
