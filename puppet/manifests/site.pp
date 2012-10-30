@@ -3,11 +3,11 @@ node 'puppethardy.vagrant.local' inherits generic_host {
 
 }
 
-node 'puppethardy.vagrant.local' inherits generic_host {
+node 'puppetlucid.vagrant.local' inherits generic_host {
 
 }
 
-node 'puppethardy.vagrant.local' inherits generic_host {
+node 'puppetprecise.vagrant.local' inherits generic_host {
 
 }
 
@@ -17,9 +17,6 @@ node 'puppetmaster.vagrant.local' inherits generic_host {
   }
   package { 'vim-puppet':
     ensure => present,
-    }
-  package { 'etckeeper':
-    ensure => present,
   }
   package { 'puppet-lint':
     ensure => present
@@ -27,4 +24,7 @@ node 'puppetmaster.vagrant.local' inherits generic_host {
 }
 
 node generic_host {
+  package { 'etckeeper':
+    ensure => present
+  }
 }
