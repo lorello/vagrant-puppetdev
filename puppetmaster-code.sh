@@ -1,11 +1,11 @@
 #!/bin/bash
 
-if [ ! -f ./puppetmaster-code-repository.conf ]; then
-    echo "if you want to checkout your puppet code customize the ./puppetmaster-code-repository.conf.template"
+if [ ! -f /vagrant/puppetmaster-code-repository.conf ]; then
+    echo "if you want to checkout your puppet code customize the /vagrant/puppetmaster-code-repository.conf.template"
     exit 0
 fi
 
-. ./puppetmaster-code-repository.conf
+. /vagrant/puppetmaster-code-repository.conf
 
 function ensure_package()
 {
@@ -36,5 +36,11 @@ case $VCS in
 		git clone $REPO_MANIFESTS $PATH_MANIFESTS
 	fi
         ;;
+    *)
+        [ -d /etc/puppet/modules ] && mv /etc/puppet/modules /etc/puppet/modules.orig
+        [ ! -h /etc/puppet/modules ] && ln -s /vagrant/puppet/modules /etc/puppet/modules
+
+        [ -d /etc/puppet/manifests ] && mv /etc/puppet/manifests /etc/puppet/manifests.orig
+        [ ! -h /etc/puppet/manifests ] && ln -s /vagrant/puppet/manifests /etc/puppet/manifests
 esac
 

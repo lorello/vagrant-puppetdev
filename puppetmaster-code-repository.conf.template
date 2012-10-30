@@ -1,23 +1,26 @@
 # Create a copy of this file to configure your puppet code
 # repository location
 
-# VCS=[SVN|GIT]
-VCS=GIT
+# VCS=[SVN|GIT|NONE]
+# If you set SVN or GIT you must specify some option to
+# reach your code
+# If you leave the default 'NONE' your puppet code is taken
+# from here
+# https://github.com/lorello/vagrant-puppetdev/blob/master/puppet
+VCS=NONE
 
 # SVN Options
 SVNUSER=your_svn_user
 SVNPASS=*************
 SVNOPTIONS="--quiet --no-auth-cache"
 
-
 # GIT Options
 # none, use common variables ;-)
-
 
 # Common options
 #REPO_MODULES=https://svn.yoursvnserver.com/puppet/trunk/modules
 PATH_MODULES=/etc/puppet/modules
 
-REPO_MANIFESTS=https://github.com/lorello/vagrant-puppetdev/puppet/manifests
+#REPO_MANIFESTS=https://svn.yoursvnserver.com/puppet/trunk/manifests
 PATH_MANIFESTS=/etc/puppet/manifests
 
