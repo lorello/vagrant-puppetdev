@@ -2,7 +2,6 @@
 
 . /vagrant/puppetclient-bootstrap.sh
 
-
 if $(dpkg -l | grep -q puppetmaster); then
     echo "puppetmaster already installed."
 else

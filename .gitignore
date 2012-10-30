@@ -2,3 +2,4 @@
 *.box
 puppetmaster-code-repository.conf
 Vagrantfile.package
+Vagrantfile.dropbox

@@ -2,7 +2,7 @@
 # repository location
 
 # VCS=[SVN|GIT]
-VCS=SVN
+VCS=GIT
 
 # SVN Options
 SVNUSER=your_svn_user
@@ -15,8 +15,9 @@ SVNOPTIONS="--quiet --no-auth-cache"
 
 
 # Common options
-REPO_MODULES=https://svn.yoursvnserver.com/puppet/trunk/modules
+#REPO_MODULES=https://svn.yoursvnserver.com/puppet/trunk/modules
 PATH_MODULES=/etc/puppet/modules
-REPO_MANIFESTS=https://svn.yoursvnserver.com/puppet/trunk/manifests
+
+REPO_MANIFESTS=https://github.com/lorello/vagrant-puppetdev/puppet/manifests
 PATH_MANIFESTS=/etc/puppet/manifests
 

@@ -4,11 +4,10 @@
 Vagrant::Config.run do |config|
     config.vm.define :puppetmaster do |master_config|
         master_config.vm.box = "precise32"
-
         master_config.vm.box_url = "http://files.vagrantup.com/precise32.box"
         master_config.vm.network :hostonly, "10.20.30.2"
         master_config.vm.host_name = "puppetmaster.vagrant.local"
-
+        master_config.vm.customize ["modifyvm", :id, "--memory", 512]
         master_config.vm.provision :shell do |shell|
             shell.path = "puppetmaster-bootstrap.sh"
         end

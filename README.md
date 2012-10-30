@@ -24,6 +24,9 @@ sudo aptitude install git
 Edit accordingly to your environment or leave it with suggested default if your just
 start playing with puppet
 
+TODO: simple puppet code in separated repository to start playing
+with puppet recipes.
+
 
 
 
