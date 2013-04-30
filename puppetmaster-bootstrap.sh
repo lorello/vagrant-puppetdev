@@ -6,7 +6,7 @@ if $(dpkg --status puppetmaster | egrep -q "^Version: $VERSION"); then
     echo "puppetmaster already installed."
 else
     echo "Installing puppetmaster..."
-    aptitude -q -y install puppetmaster=$VERSION
+    aptitude -q -y install puppetmaster=$VERSION puppetmaster-common=$VERSION
     update-rc.d puppetmaster enable
 fi
 
